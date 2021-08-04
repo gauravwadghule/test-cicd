@@ -28,4 +28,5 @@ jobs:
           echo $BRANCH
           echo $REPOSITORY_NAME
           echo $DEPLOYMENT
+          git log --name-status -10 changelogs
 
