@@ -1,1 +1,2 @@
 this is file 2
+changes in 3rd  file
