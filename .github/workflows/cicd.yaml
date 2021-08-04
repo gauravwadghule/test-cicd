@@ -28,5 +28,5 @@ jobs:
           echo $BRANCH
           echo $REPOSITORY_NAME
           echo $DEPLOYMENT
-          echo "1st option::" && git diff --name-only HEAD~1 -- HEAD ./changelogs
+          # echo "1st option::" && git diff --name-only HEAD~1 -- HEAD ./changelogs
           echo "2nd opt::" && git diff --name-only HEAD^ HEAD ./changelogs
