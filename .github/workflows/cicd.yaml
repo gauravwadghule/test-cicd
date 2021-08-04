@@ -14,6 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
         name: checkout
 
       - name: Init
@@ -29,4 +31,4 @@ jobs:
           echo $REPOSITORY_NAME
           echo $DEPLOYMENT
           # echo "1st option::" && git diff --name-only HEAD~1 -- HEAD ./changelogs
-          echo "2nd opt::" && git diff --name-only HEAD^ HEAD ./changelogs
+          echo "2nd opt::" && git diff --name-only .git/HEAD^ -- .git/HEAD ./changelogs
