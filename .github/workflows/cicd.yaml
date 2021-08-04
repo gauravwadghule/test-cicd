@@ -24,11 +24,9 @@ jobs:
           echo ::set-env name=BRANCH::"$(git rev-parse --abbrev-ref HEAD)" && echo $BRANCH
           echo ::set-env name=REPOSITORY_NAME::$(echo "database-versioning")
           echo ::set-env name=DEPLOYMENT::$(echo "database-versioning")
-      - name: Deploy
+      - name: Find recent changes in changelog and print this console
         shell: bash
         run: |
-          echo $BRANCH
-          echo $REPOSITORY_NAME
-          echo $DEPLOYMENT
-          git diff --name-only HEAD~10 -- HEAD ./changelogs > changelogsToExecute.txt
-          for i in $(cat changelogsToExecute.txt); do echo "$i"; done
+          chmod +x ./script.sh
+          git diff --name-only HEAD~1 -- HEAD ./changelogs > changelogsToExecute.txt
+          for i in $(cat changelogsToExecute.txt); do echo "Executing for $i" && ./script.sh $1 update ; done
