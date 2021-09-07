@@ -29,6 +29,9 @@ jobs:
       - name: Find recent changes in changelog and print this console
         shell: bash
         run: |
+          echo ::set-env name=TIMESTAMP::"$(date +'%Y-%m-%d')"
+          export TIMESTAMP="$(date +'%Y-%m-%d')"
+          echo $TIMESTAMP
           chmod +x ./script.sh
           git diff --name-only HEAD~1 -- HEAD ./changelogs > changelogsToExecute.txt
           for i in $(cat changelogsToExecute.txt); do echo "Executing for $i" && ./script.sh $i update ; done
