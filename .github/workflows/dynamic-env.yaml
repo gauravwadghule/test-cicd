@@ -1,11 +1,11 @@
-name: Test-CICD
+name: dynamic-env
 
 on:
   push:
     branches:
       - "main"
     paths:
-      - ".github/workflows/cicd.yaml"
+      - ".github/workflows/dynamic-env.yaml"
 
 env:
   CI: false
@@ -29,6 +29,17 @@ jobs:
       - name: Find recent changes in changelog and print this console
         shell: bash
         run: |
-          chmod +x ./script.sh
-          git diff --name-only HEAD~1 -- HEAD ./changelogs > changelogsToExecute.txt
-          for i in $(cat changelogsToExecute.txt); do echo "Executing for $i" && ./script.sh $i update ; done
+          cd dynamic-env-keys
+          source dynamic-env-config.env
+          source $(echo "./"$SOURCE"/config.env")
+          source $(echo "./"$DESTINATION"/config.env")
+
+          echo $SOURCE
+          echo $DESTINATION
+          
+          eval SOURCE_ENV1=\$$SOURCE"_ENV1"
+          eval DESTINATION_ENV1=\$$DESTINATION"_ENV1"
+          echo $SOURCE_ENV1
+          echo $DESTINATION_ENV1
+
+
