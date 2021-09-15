@@ -24,8 +24,8 @@ jobs:
         shell: bash
         run: |
           echo ::set-env name=BRANCH::"$(git rev-parse --abbrev-ref HEAD)" && echo $BRANCH
-          echo ::set-env name=REPOSITORY_NAME::$(echo "database-versioning")
-          echo ::set-env name=DEPLOYMENT::$(echo "database-versioning")
+          # echo ::set-env name=REPOSITORY_NAME::$(echo "database-versioning")
+          # echo ::set-env name=DEPLOYMENT::$(echo "database-versioning")
       - name: Find recent changes in changelog and print this console
         shell: bash
         run: |
