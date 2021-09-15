@@ -29,6 +29,11 @@ jobs:
       - name: Find recent changes in changelog and print this console
         shell: bash
         run: |
+          source ./config.env
+          if [[ $BRANCH != $DESTINATION ]]; 
+          then
+              echo "To Spawn RDS on $DESTINATION you must run this pipeline on $DESTINATION branch"
+          fi
           echo ::set-env name=TIMESTAMP::"$(date +'%Y-%m-%d')"
           export TIMESTAMP="$(date +'%Y-%m-%d')"
           echo $TIMESTAMP
