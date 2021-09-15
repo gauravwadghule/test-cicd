@@ -33,8 +33,7 @@ jobs:
           if [[ $BRANCH != $DESTINATION ]]; 
           then
               echo "To Spawn RDS on $DESTINATION you must run this pipeline on $DESTINATION branch"
-          else
-              exit 128
+              exit 128 
           fi
           echo ::set-env name=TIMESTAMP::"$(date +'%Y-%m-%d')"
           export TIMESTAMP="$(date +'%Y-%m-%d')"
